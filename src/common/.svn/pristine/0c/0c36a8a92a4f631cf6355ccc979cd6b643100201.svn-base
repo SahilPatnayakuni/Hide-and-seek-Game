@@ -1,0 +1,24 @@
+package common.messageDataPackets;
+
+import provided.datapacket.DataPacketAlgo;
+import common.IStatus;
+
+/**
+ *Extends the DataPacketAlgo to enforce the typing for the return.
+ */
+public class MessageDataPacketAlgo extends DataPacketAlgo<StatusDataPacket<? extends IStatus>, Void> {
+	
+	/**
+	 * Version number for serialization
+	 */
+	private static final long serialVersionUID = 20459194114770686L;
+
+	/**
+	 * Default constructor that takes in the default MessageDataPacketAlgoCmd
+	 * @param defaultCmd the default cmd.
+	 */
+	public MessageDataPacketAlgo(MessageDataPacketAlgoCmd<?> defaultCmd) {	
+		super(defaultCmd);
+	}
+
+}

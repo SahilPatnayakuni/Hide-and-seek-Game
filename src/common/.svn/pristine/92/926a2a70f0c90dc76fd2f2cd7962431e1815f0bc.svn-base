@@ -1,0 +1,20 @@
+package common.messageTypes;
+
+import java.io.Serializable;
+
+import common.IUser;
+
+/**
+ * Messages to all players in world when a player is leaving a team.
+ * @author naomi
+ *
+ */
+public interface ILeaveWorldMsg extends Serializable {
+	
+	/**
+	 * Returns the IPlayer of the player leaving the world
+	 * @return leaving player
+	 */
+	public IUser getUser();
+	
+}

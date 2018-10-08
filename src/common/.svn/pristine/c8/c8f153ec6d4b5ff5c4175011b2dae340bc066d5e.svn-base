@@ -1,0 +1,19 @@
+package common.messageDataPackets;
+
+import provided.datapacket.ADataPacketAlgoCmd;
+import common.ICmdToModelAdapter;
+import common.IStatus;
+
+/**
+ * Class that extends ADataPacketAlgoCmd to enforce the typing.  
+ *
+ */
+public abstract class MessageDataPacketAlgoCmd<T>  extends ADataPacketAlgoCmd<StatusDataPacket<? extends IStatus>, T, Void, ICmdToModelAdapter, MessageDataPacket<T>>{
+
+	
+	/**
+	 * Serial ID.
+	 */
+	private static final long serialVersionUID = -474598072072827707L;
+
+}

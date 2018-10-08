@@ -1,0 +1,14 @@
+package common.messageTypes;
+
+import java.io.Serializable;
+
+import common.IGroup;
+import common.IUser;
+
+public interface ISetGroupMsg extends Serializable {
+	
+	public IUser getUser();
+	
+	public IGroup getGroup();
+
+}

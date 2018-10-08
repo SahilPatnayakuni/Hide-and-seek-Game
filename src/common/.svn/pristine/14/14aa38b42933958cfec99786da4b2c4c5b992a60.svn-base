@@ -1,0 +1,15 @@
+package common.messageTypes;
+
+import java.io.Serializable;
+
+import common.IUser;
+
+public interface IJoinWorldMsg extends Serializable{
+	
+	/**
+	 * Returns the players that has need to be added to the player's representation of the world.
+	 * @return
+	 */
+	public IUser getUser();
+
+}

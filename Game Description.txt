@@ -1,0 +1,35 @@
+Hide and Seek:
+The Game will start with players joining the Game World (assuming Game Commands have already been installed)
+with an IJoinWorldMsg, from there they will be asked to choose between the Hiding Team and the Seeking Team.
+When they have selected, their game client will send an ISetGroupMsg to everybody else in the Game World. The
+person who created the game can then start the game. The game will take place on a continuous landmass of the world
+and the goal of the Seeking Team is to find the Hiding Team. The goal of the Hiding Team is to remain hidden for 5
+minutes. The game will end either when 5 minutes have passed or the number of people on the Hiding Team who have not
+been found is equal to 0.
+
+The game will be played by each person telling everyone the direction in which they
+want to move. Thus they will move a fixed distance in that direction and then their game client will determine if 
+there is anybody within a certain radius. Each player can only see another player if they are within a certain radius
+of each other, regardless of team. In order to "find" a member of the Hiding Team, a member of the Seeking Team must
+get within a certain distance of them. This distance is smaller than the distance at which the Hiding Team Player is
+visible to the Seeking Team player.
+
+Since having each movement involve sending a message to every other person in the
+Game World asking where they are, our game will implement it such that every player will have the location of every
+other player stored in their Mixed Data Dictionary (MDD), thus when another player tells them that they are moving, they 
+update this information in their MDD. Similarly when they move, they only need to look within their MDD to determine
+if their are any other players who are close enough to be visible. If 5 minutes pass and not all the Hiding Team Members
+have been found, then the Hiding Team wins, otherwise when all the Hiding Team members have been found, the Seeking Team
+will win.
+
+Leaving the game in our game is similar to leaving the world and once the everyone else has been notified that
+you have left they can remove you from their MDD and their list of people in the Game World. Players leaving will not
+affect the status of the game since the winning condition does not depend on the number of players on either team.
+If the number of players on the Hiding Team drops to 0 then the seeking team will win because the condition "the number
+of people on the Hiding Team who have not been found is equal to 0" will be fulfilled. Similarly if the number of people
+on the Seeking Team drops to 0 then there will be no way for the Hidng Team member to be found and they will win
+after 5 minutes elapse. As for communication both Hiding Team and Seeking Team members have the ability to communicate
+with everybody on their team and everybody in the world, however Seeking Team members also have the ability to send
+coordinates to their team.
+
+In summary, this is Hide and Seek but on a map.

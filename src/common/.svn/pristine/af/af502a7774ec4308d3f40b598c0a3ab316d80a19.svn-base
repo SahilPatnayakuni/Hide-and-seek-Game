@@ -1,0 +1,20 @@
+package common.messageTypes;
+
+import java.io.Serializable;
+
+import common.IUser;
+
+/**
+ * Message that is sent to IUser when joining the world
+ * @author naomi
+ *
+ */
+public interface IJoinWorldMsg extends Serializable{
+	
+	/**
+	 * Returns the players that has need to be added to the player's representation of the world.
+	 * @return
+	 */
+	public IUser getUser();
+
+}

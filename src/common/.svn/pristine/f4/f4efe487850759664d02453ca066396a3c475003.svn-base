@@ -1,0 +1,59 @@
+package common;
+
+import java.rmi.Remote;
+import java.rmi.RemoteException;
+
+import common.messageDataPackets.MessageDataPacket;
+import common.messageDataPackets.StatusDataPacket;
+import common.messageDataPackets.MessageDataPacketAlgoCmd;
+
+/**
+ * Class that represents a user in a game
+ * @author naomi
+ *
+ */
+public interface IUser extends Remote{
+	/**
+	 * This is the name every IUser stub should be bound to the RMI Registry with. 
+	 * Because only one IUser can be bound per IP at a given time, we can mandate that a common
+	 * String is used. This should be the name you use to look up someone else's stub.
+	 * The only IUsers that should be bound are those that are hosting a game!
+	 */
+	public  String BOUND_NAME = "IUser";
+	
+	/**
+	 * Sends a message to be processed by the user's visitor
+	 * @return StatusDataPacket that informs sender of success of message processing
+	 */
+	public StatusDataPacket<? extends IStatus> receiveMessage(MessageDataPacket<?> msg) throws RemoteException;
+	  
+	/**
+	 * Returns a collection of the user's groupmates (including themselves)
+	 * @return collection
+	 */
+	public IGroup getGroup() throws RemoteException;
+	
+	/**
+	 * Returns a collection of the user's groupmates (including themselves)
+	 * @return collection
+	 */
+	public IGroup getWorld() throws RemoteException;
+	
+	/**
+	 * Returns the name of the user
+	 * @return user name
+	 */
+	public String getUsername() throws RemoteException;
+	
+	/**
+	 * Returns the command that should be used to process a message. 
+	 * Should only be used when a message of an unknown type is received. 
+	 * @param dataType - the dataType of the unkown cmd.
+	 * @param <T> the type of the unkown message.
+	 * @return - MessageDataPacket object with desired command.
+	 * @throws RemoteException exception
+	 */
+	public <T> MessageDataPacketAlgoCmd<?> getCmd(Class<T> dataType) throws RemoteException;
+	
+
+}

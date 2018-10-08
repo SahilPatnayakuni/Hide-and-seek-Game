@@ -1,0 +1,17 @@
+package common;
+
+import java.awt.Component;
+
+/**
+ * The interface for the component factory that is used to make GUI components on the GUI thread.
+ * Is used by the ICmdToModelAdapter so messages can display their outputs. 
+ * All outputs are generalized to a Component so that they can all be outputted here.
+ */
+public interface IComponentFactory {
+	
+	/**
+	 * Creates a new component and returns it.
+	 * @return -component
+	 */
+	Component createComponent();
+}

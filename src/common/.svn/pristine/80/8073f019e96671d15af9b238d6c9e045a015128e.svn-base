@@ -1,0 +1,53 @@
+package common;
+
+import java.io.Serializable;
+import java.util.Collection;
+import java.util.UUID;
+
+import common.messageDataPackets.MessageDataPacket;
+import common.messageDataPackets.StatusDataPacket;
+
+/**
+ * Represents a group of IUsers
+ * @author naomi
+ *
+ */
+public interface IGroup extends Serializable {
+
+	/**
+	 * Returns the UUID representing the user's group
+	 * @return UUID
+	 */
+	public UUID getGroupID();
+	
+	/**
+	 * Returns the name representing the user's group
+	 * @return group name
+	 */
+	public String getGroupName();
+	
+	/**
+	 * Returns the members of the group
+	 * @return group members
+	 */
+	public Collection<IUser> getGroupMembers();
+	
+	/**
+	 * Adds member to IGroup
+	 * @param newMember
+	 */
+	public void addMember(IUser newMember);
+	
+	/**
+	 * Removes member from IGroup
+	 * @param oldMember
+	 */
+	public void removeMember(IUser oldMember);
+	
+	/**
+	 * Sends a message to be processed by the user's visitor
+	 * @return StatusDataPacket that informs sender of success of message processing
+	 */
+	public Collection<StatusDataPacket<? extends IStatus>> receiveMessage(MessageDataPacket<?> msg);
+
+}

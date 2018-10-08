@@ -1,0 +1,27 @@
+package common.messageTypes;
+
+import java.io.Serializable;
+
+import common.IGroup;
+import common.IUser;
+
+/**
+ * Message sent to update the group of a member of the world
+ * @author naomi
+ *
+ */
+public interface ISetGroupMsg extends Serializable {
+	
+	/**
+	 * Gets the user that is changing groups
+	 * @return user
+	 */
+	public IUser getUser();
+	
+	/**
+	 * Gets the group that the user is joining
+	 * @return
+	 */
+	public IGroup getGroup();
+
+}

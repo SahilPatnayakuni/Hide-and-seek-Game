@@ -1,0 +1,22 @@
+package common.messageDataPackets;
+
+import provided.datapacket.DataPacket;
+import common.IUser;
+
+
+/**
+ * Extends the DataPacket class to make typing easier.
+ */
+public class MessageDataPacket<T> extends DataPacket<T, IUser> {
+	
+	private static final long serialVersionUID = -4384652266644231822L;
+
+
+	/**
+	 * Calls the DataPacket constructor.
+	 */
+	public MessageDataPacket(Class<T> c, T data, IUser sender) {
+		super(c, data, sender);
+	}
+
+}

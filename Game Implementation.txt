@@ -1,0 +1,17 @@
+Hide and Seek API implementaiton:
+Our design implements the common API as follows. First in order to get someone else's IUser or for them to get our
+IUser, we use RMI and bind an IUser to the Registry as soon as the client for running games starts up. This IUser bound
+to the Registry will be us in the game that we wish to join and as a result it will receive and process InstallCmd messages
+using a MessageDataPacketAlgo to install the MessageDataPacketAlgoCmds it receives. Similarly since this IUser knows
+how to play our game we can get the commands from it and install them onto an other IUser we are connected to. This
+will be how Game commands are installed.
+
+In order to actually play the game it will all come down to passing messages to other IUsers and having them process 
+these messages. In addition, every IUser will have it's own IGroup and access to a MixedDataDictionary that it will 
+use to store knowledge about the game. After it processes these messages, which are sent through Data Packets, it will
+send back a StatusDataPacket to the one sending them to let the sender know that the message has been processed.
+
+Our game's unknown commands will have to deal with moving yourself around and communicating
+with other players. Even though each player will be unable to see other players changing location on the map unless
+they are within sight radius each player's map will update whenever anybody moves because there is the possibility
+that the person who moved is within your sight radius or moved within your sight radius.

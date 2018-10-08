@@ -1,0 +1,71 @@
+package common;
+
+import java.util.Collection;
+
+import common.messageDataPackets.*;
+import provided.mixedData.MixedDataKey;
+
+/**
+ * The Local adapter that allows the messages to communicate how to add their component to the view.
+ * 
+ * This adapter is NOT an RMI Server object it is for local use only.
+ * 
+ * Whenever an ADataPacketAlgoCmd is installed, the local system should immediately give it an 
+ * instance of this adapter so when DataPackets are processed they can use this adapter to
+ * tell the MVC how to handle the component.
+ */
+public interface ICmdToModelAdapter {
+	
+	/**
+	 * Inserts an item into the mixed data dictionary
+	 * @param key String identifier of item put into dictionary
+	 * @param object item to enter dictionary
+	 */
+	public <T> void put(MixedDataKey<T> key, T object);
+	
+	/**
+	 * Get item from the mixed data dictionary	
+	 * @param key String identifier of item desired
+	 * @return item desired
+	 */
+	public <T> T get(MixedDataKey<T> key);
+	
+	/**
+	 * Get item from the mixed data dictionary	
+	 * @param key String identifier of item desired
+	 * @return item desired
+	 */
+	public boolean containsKey(MixedDataKey<?> key);
+	
+	/**
+	 * Handles the component factory for a GUI component that the message says should scroll.
+	 * An example of this could be text messages as they should probably scroll.
+	 * @param compFac Component Factory.
+	 */
+	public void handleScrollingComponentFactory(IComponentFactory compFac);
+	
+	/**
+	 * Handles the component factory for a GUI component that the message says should stay static.
+	 * You, since this is local, can handle this in any way, such as popping out a new
+	 * window, or "pinning" the component to the bottom of the chat.
+	 * 
+	 * An example of this could be images.
+	 * @param compFac Component Factory.
+	 */
+	public void handleStaticComponentFactory(IComponentFactory compFac);
+	
+	
+	/**
+	 * Allows the components to send messages to the ChatRoom. When you create the AlgoCmd
+	 * you can use closure to give components access to this method since every Algocmd will have
+	 * a refrence to the adapter.
+	 * @param message the message that the GUI compoent sends.
+	 */
+	public void sendMessage(MessageDataPacket<?> message, Collection<IUser> recepients);
+	
+	/**
+	 * Gets the local player so that components that send messages can have the sender.
+	 * @return the local user.
+	 */
+	public IUser getUser();
+}

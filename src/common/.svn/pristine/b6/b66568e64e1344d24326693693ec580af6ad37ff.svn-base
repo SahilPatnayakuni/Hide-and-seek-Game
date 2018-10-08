@@ -1,0 +1,81 @@
+package common.API;
+
+import java.awt.Component;
+import java.util.function.Supplier;
+
+import common.messageTypes.IMessage;
+import provided.mixedData.MixedDataKey;
+
+/**
+ * The local adapter that allows the messages to communicate 
+ * with other commands (through the mixedDataDictionary), other
+ * users (through sendMessage), and the view (through handleComponent).
+ * 
+ * This adapter is NOT an RMI Server object; it is for local use only.
+ * 
+ * Whenever an ADataPacketAlgoCmd is installed, the local system should 
+ * then install an instance of this adapter through the "setCmd2ModelAdpt"
+ * method.
+ * 
+ * @param <M> IMessage type for this adapter's ISender.
+ * (i.e. IConnMessage for IConnect, ICommMessage for ICommunicate)
+ * 
+ * @param <S> ISender type dependent on the class that will be using
+ * this adapter. (Should be either IConnect or ICommunicate)
+ */
+public interface ICmdToModelAdapter<M extends IMessage, S extends ISender> {
+	
+	
+	/**
+	 * Tells the local system to make a MessageDataPacket with
+	 * the message and send it to the recipient.
+	 * @param recipient The user who will receive the message.
+	 * Note that this restricts communication to same-type ISenders; IConnects
+	 * cannot talk to ICommands (and vice versa).
+	 * @param id 
+	 * @param message the message that will go into the MessageDataPacket.
+	 */
+	public <T extends M> void sendMessageTo(S recipient, Class<T> id, T message);
+
+	/**
+	 * Handles the component factory for a GUI component that the message says should scroll.
+
+	 * @param compFac A component factory (likely a lambda from nothing to Component).
+	 */
+	public void handleScrollingComponentFactory(Supplier<Component> compFac);
+	
+	/**
+	 * Handles the component factory for a GUI component that the message says should stay static.
+	 * 
+	 * @param compFac A component factory (likely a lambda from nothing to Component).
+	 */
+	public void handleStaticComponentFactory(Supplier<Component> compFac);
+		
+	/**
+	 * Gets data from the local mixed data dictionary.
+	 * @param key The key to the data.
+	 * @return The data of certain type.
+	 */
+	public <T> T getFromDictionary(MixedDataKey<T> key);
+	
+	/**
+	 * Put data into the mixed data dictionary.
+	 * @param key The key of the data.
+	 * @param obj The data.
+	 */
+	public <T> void putInDictionary(MixedDataKey<T> key, T obj);
+	
+	
+	/**
+	 * Returns true if the mixed data dictionary contains the key.
+	 * @param key - the key to check
+	 * @return boolean, true if mdd contains key, false otherwise
+	 */
+	public abstract boolean dictionaryContainsKey(MixedDataKey<?> key);
+	
+	/**
+	 * Get the local user's name.
+	 * @return the user's name
+	 */
+	public String getName();
+}

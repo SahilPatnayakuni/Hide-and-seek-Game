@@ -1,0 +1,27 @@
+package common.messageTypes;
+
+import java.io.Serializable;
+
+import common.messageDataPackets.MessageDataPacketAlgoCmd;
+
+/**
+ * Message that installs a command of message type T to recepient's visitor
+ * @author naomi
+ *
+ * @param <T> type of message that command corresponds to
+ */
+public interface IInstallCmdMsg<T> extends Serializable{
+	
+	/**
+	 * Gets the class that the command corresponds to
+	 * @return index
+	 */
+	public Class<T> getIndex();
+	
+	/**
+	 * Gets the command for the message type
+	 * @return
+	 */
+	public MessageDataPacketAlgoCmd<T> getCmd();
+
+}

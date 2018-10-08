@@ -1,0 +1,25 @@
+package common.messageDataPackets;
+
+import common.IStatus;
+import common.IUser;
+
+
+
+/**
+ * Extends the DataPacket class to make typing easier. Used for sending status.
+ */
+public class StatusDataPacket<T extends IStatus>  extends MessageDataPacket<T> {
+
+	/**
+	 * Serial ID.
+	 */
+	private static final long serialVersionUID  = 11234234123L;
+	
+	/**
+	 * Calls the DataPacket constructor.
+	 */
+	public StatusDataPacket(Class<T> c, T data, IUser sender) {
+		super(c, data, sender);
+	}
+
+}

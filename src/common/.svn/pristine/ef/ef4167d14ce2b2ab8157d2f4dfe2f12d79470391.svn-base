@@ -1,0 +1,43 @@
+package common;
+
+import java.io.Serializable;
+/**
+ * Return status types for IUser.processMessage(). When you call another user's processMessage() method, they 
+ * determine whether the call succeeded, failed, or was refused and return an object of corresponding type.
+ * The returned object should have a descriptive message.
+ *
+ */
+public interface IStatus extends Serializable {
+	/**
+	 * If desired, the status's sender can give a description of the status.
+	 * @return -information about the status
+	 */
+	public String getStatus();
+	
+	/**
+	 * Represents that the message was received successfully.
+	 *
+	 */
+	public interface ISuccess extends IStatus {
+		
+	}
+	
+	/**
+	 * Represents that there was a failure in receiving the message. Information about the
+	 * failure can be accessed via getStatus().
+	 *
+	 */
+	public interface IFailure extends IStatus {
+		
+	}
+	
+	/**
+	 * Represents that the message was processed successfully, but the sender's request was refused.
+	 * This case is distinct from both success and failure.
+	 *
+	 */
+	public interface IRefused extends IStatus {
+		
+	}
+
+}
