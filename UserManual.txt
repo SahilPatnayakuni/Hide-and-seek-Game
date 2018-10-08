@@ -1,0 +1,56 @@
+Hide and Seek Tag
+	-Edi Danalache
+	-Sahil Patnayakuni
+
+How to connect to/start the game:
+	1. 	Connect to the server.
+	2.	Send a IJoinMessage to our Client.
+	3.	The game is now installed on your system. A WWJ Map and Chatroom should
+			pop-up on your screen as static components.
+	4.	The game is now started by the server once enough people have joined.
+		
+
+Connect to other players:
+	The server automatically puts you on teams and puts you in a chatroom with
+		the other players on your team. When playing the game you will
+		see the other players on the map.
+
+		
+General Controls:
+	Start: To select your starting position, right-click anywhere on the map.
+		It is highly suggested that you stay away from the North and South
+		Poles, as the Earth's curved shape can cause you to fall off the WWJ
+		map.
+		
+	Controls: Each turn, right-click somewhere to move there. You can only move
+		a limited distance each turn, so if you click outside of your
+		move-radius you will move as far as possible as you can in that
+		direction. ONLY THE FIRST CLICK PER TURN COUNTS.
+		
+	Rounds: Each new round is started after everyone has selected a new
+		position to move to. The server can choose to start the rounds
+		whenever is convenient. 
+		
+		
+Hiders:
+	Goal: Stay away from the seekers until the end of the game (until the 
+		server decides enough time has gone on and ends the game).
+
+	Hints: Try to coordinate with your team so that you don't bunch up and make
+		it easy for the seekers to catch you!
+		
+
+Seekers:
+	Goal: Catch all of the hiders by moving on top of them.
+
+	Hints: Try to coordinate with your team so that you surround the hiders and
+		don't give them an avenue of escape!
+		
+		
+How to end/exit:
+	Once a team wins the server will send a win/lose message to each team, and
+		the game will end. After that each user is free to close the client.
+	If you want to leave early, leaving nicely will remove you from the game
+		without crashing (you send a leave message).
+		
+		
